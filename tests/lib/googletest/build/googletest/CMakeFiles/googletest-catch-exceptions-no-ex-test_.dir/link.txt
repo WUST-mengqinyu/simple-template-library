@@ -1,1 +1,0 @@
-/Library/Developer/CommandLineTools/usr/bin/c++  -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/googletest-catch-exceptions-no-ex-test_.dir/test/googletest-catch-exceptions-test_.cc.o -o googletest-catch-exceptions-no-ex-test_  ../lib/libgtest_main_no_exception.a 
