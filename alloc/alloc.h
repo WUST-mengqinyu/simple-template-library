@@ -1,8 +1,0 @@
-//
-// Created by badcw on 2020/11/20.
-//
-
-#ifndef SIMPLE_TEMPLATE_LIBRARY_ALLOC_H
-#define SIMPLE_TEMPLATE_LIBRARY_ALLOC_H
-
-#endif //SIMPLE_TEMPLATE_LIBRARY_ALLOC_H

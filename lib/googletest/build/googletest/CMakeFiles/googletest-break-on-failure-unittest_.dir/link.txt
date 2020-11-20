@@ -1,1 +1,0 @@
-/Library/Developer/CommandLineTools/usr/bin/c++  -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/googletest-break-on-failure-unittest_.dir/test/googletest-break-on-failure-unittest_.cc.o -o googletest-break-on-failure-unittest_  ../lib/libgtest.a 

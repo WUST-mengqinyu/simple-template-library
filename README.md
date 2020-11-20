@@ -1,15 +1,2 @@
-# simple template library
-
-A simple library just like standard template library.
-
-Add many container and provide more algorithm for users.
-
-Useful for competition.
-
-## DataStructure
-
-[Data Structure](data_structure/data_structure.md)
-
-## Algorithm
-
-[Algorithm](algorithm/algorithm.md)
+# easy-template-library
+A easier library just as standrad template library.
