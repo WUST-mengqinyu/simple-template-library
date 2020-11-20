@@ -9,6 +9,9 @@ include_directories(lib/googletest/googletest/include)
 set(SOURCE_FILES src/main.cpp)
 set(PROJECT_BINARY_DIR bin)
 
+set(ALGORITHM_HEAD_FILES algorithm/fft.h algorithm/geometry.h algorithm/group_theory.h algorithm/hash.h algorithm/math.h algorithm/print.h algorithm/random.h algorithm/sort.h)
+set(BITS_HEAD bits/header.h)
+
 add_executable(test ${SOURCE_FILES})
 target_link_libraries(test gtest gtest_main)
 
