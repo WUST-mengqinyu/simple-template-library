@@ -1,0 +1,1 @@
+/Library/Developer/CommandLineTools/usr/bin/c++  -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/googletest-test-part-test.dir/test/googletest-test-part-test.cc.o -o googletest-test-part-test  ../lib/libgtest_main.a ../lib/libgtest.a 

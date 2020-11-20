@@ -1,0 +1,1 @@
+/Library/Developer/CommandLineTools/usr/bin/c++  -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/gtest_xml_outfile2_test_.dir/test/gtest_xml_outfile2_test_.cc.o -o gtest_xml_outfile2_test_  ../lib/libgtest_main.a ../lib/libgtest.a 
