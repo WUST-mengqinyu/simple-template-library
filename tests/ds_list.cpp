@@ -3,7 +3,7 @@
 //
 
 #include <gtest/gtest.h>
-#include "../header.h"
+#include "../src/header.h"
 
 TEST(SuiteName, TestName) {
     EXPECT_EQ(f(1), 1);
