@@ -1,1 +1,0 @@
-/Library/Developer/CommandLineTools/usr/bin/c++  -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/gtest_sole_header_test.dir/test/gtest_sole_header_test.cc.o -o gtest_sole_header_test  ../lib/libgtest_main.a ../lib/libgtest.a 

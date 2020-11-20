@@ -1,1 +1,0 @@
-/Library/Developer/CommandLineTools/usr/bin/c++  -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/googletest-env-var-test_.dir/test/googletest-env-var-test_.cc.o -o googletest-env-var-test_  ../lib/libgtest.a 
