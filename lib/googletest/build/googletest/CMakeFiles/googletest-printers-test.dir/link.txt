@@ -1,0 +1,1 @@
+/Library/Developer/CommandLineTools/usr/bin/c++  -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/googletest-printers-test.dir/test/googletest-printers-test.cc.o -o googletest-printers-test  ../lib/libgtest_main.a ../lib/libgtest.a 
