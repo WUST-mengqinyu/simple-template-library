@@ -3,8 +3,13 @@
 //
 
 #include <bits/stdc++.h>
+#include <gtest/gtest.h>
+#include "../header.h"
 using namespace std;
 
-int main() {
-    return 0;
+TEST(SuiteName, TestName) {
+    EXPECT_EQ(f(1), 1);
 }
+//TEST(mathtest Int) {
+//
+//}

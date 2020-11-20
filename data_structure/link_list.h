@@ -5,7 +5,6 @@
 #ifndef SIMPLE_TEMPLATE_LIBRARY_LINK_LIST_H
 #define SIMPLE_TEMPLATE_LIBRARY_LINK_LIST_H
 
-#endif //EASY_TEMPLATE_LIBRARY_LINK_LIST_H
 namespace simple_template_library {
     template<typename T>
     class link_list {
@@ -23,3 +22,5 @@ namespace simple_template_library {
     struct iterator {
     };
 }
+
+#endif //EASY_TEMPLATE_LIBRARY_LINK_LIST_H

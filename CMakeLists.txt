@@ -3,17 +3,17 @@ project(simple-template-library)
 
 set(CMAKE_CXX_STANDARD 11)
 
-add_subdirectory(lib/googletest)
-include_directories(lib/googletest/googletest/include)
+add_subdirectory(tests/lib/googletest)
+include_directories(tests/lib/googletest/googletest/include)
 
 set(SOURCE_FILES src/main.cpp)
 set(PROJECT_BINARY_DIR bin)
 
-set(ALGORITHM_HEAD_FILES algorithm/fft.h algorithm/geometry.h algorithm/group_theory.h algorithm/hash.h algorithm/math.h algorithm/print.h algorithm/random.h algorithm/sort.h)
-set(BITS_HEAD bits/header.h)
+FILE(GLOB ALGORITHM_HEAD_FILES "*.h" "algorithm/*.h")
+FILE(GLOB DATA_STRUCTURE_HEAD_FILES "*.h" "data_structure/*.h")
+FILE(GLOB TEST_FILES ".cpp" "tests/*.cpp")
 
-add_executable(test ${SOURCE_FILES})
+set(HEAD header.h ${ALGORITHM_HEAD_FILES} ${DATA_STRUCTURE_HEAD_FILES})
+
+add_executable(test ${SOURCE_FILES} ${HEAD})
 target_link_libraries(test gtest gtest_main)
-
-add_executable(test_ds_link_list tests/ds_list.cpp data_structure/link_list.h)
-target_link_libraries(test_ds_link_list gtest gtest_main)
