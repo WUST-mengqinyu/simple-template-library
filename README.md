@@ -1,8 +1,8 @@
-# simple template library
+# Simple Template Library
 
 A simple library just like standard template library.
 
-Add many container and provide more algorithm for users.
+provide more containers and more algorithms for users.
 
 Useful for competition.
 
