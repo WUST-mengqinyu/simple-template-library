@@ -3,7 +3,7 @@
 //
 
 #include <bits/stdc++.h>
-#include "src/header.h"
+#include "header/header.h"
 using namespace std;
 
 int main() {
