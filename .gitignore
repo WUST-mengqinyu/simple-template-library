@@ -34,5 +34,4 @@
 # Other
 cmake-build-debug/
 .idea/
-/tests/lib/
 /tmp
