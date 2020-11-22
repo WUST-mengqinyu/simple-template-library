@@ -9,5 +9,5 @@ include_directories(simple-template-library)
 add_subdirectory(tests)
 add_subdirectory(simple-template-library)
 
-add_executable(USE_LIB main.cpp)
+add_executable(USE_LIB main.cpp bits/stdc++.h)
 target_link_libraries(USE_LIB simple-template-library)
