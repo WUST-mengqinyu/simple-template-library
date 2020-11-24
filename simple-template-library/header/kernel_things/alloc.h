@@ -36,6 +36,7 @@ void reAlloc(int new_size = -1) {
         MEMORY_POOL = malloc(sz_now << 1);
     }
 }
+#else
 #endif
 
 template<typename T>
