@@ -6,17 +6,11 @@
 #define SIMPLE_TEMPLATE_LIBRARY_BASE_DS_H
 
 #include <header/kernel_things/__config.h>
+#include <header/data_structure/numeric/int128.h>
+#include <header/data_structure/numeric/modInt.h>
 #include <cstdio>
 
 _LIB_BEGIN_NAMESPACE_STL
-
-        class int128 {
-            int x;
-        };
-
-        template<typename T>
-        class modInt {
-        };
 
         template<class T, class U>
         bool __IsSameType() {
@@ -31,6 +25,7 @@ _LIB_BEGIN_NAMESPACE_STL
         template<typename T>
         class baseDataStructure {
             T __val;
+
             void print() {
                 if (__IsSameType<T, int>) {
 
@@ -41,9 +36,10 @@ _LIB_BEGIN_NAMESPACE_STL
         typedef baseDataStructure<unsigned int> uint;
         typedef baseDataStructure<long long> int64;
         typedef baseDataStructure<unsigned long long> uint64;
-        typedef modInt<int> modint;
-        typedef modInt<int64> modint64;
-
+        typedef __INTERNAL::modInt<int> modint;
+        typedef __INTERNAL::modInt<int64> modint64;
+        typedef __INTERNAL::int128 int128;
+        typedef __INTERNAL::uint128 uint128;
 
 _LIB_END_NAMESPACE_STL
 
