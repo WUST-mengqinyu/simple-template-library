@@ -9,7 +9,8 @@
 
 #include <cstdlib>
 #include <err.h>
-#include "__config.h"
+#include <header/kernel_things/__config.h>
+#include <header/kernel_things/io.h>
 
 _LIB_BEGIN_NAMESPACE_STL
 
@@ -23,7 +24,7 @@ static memory_resource MEMORY_POOL = malloc(MIN_ALLOC);
 #define __STL_NOW_USE sizeof(MEMORY_POOL)
 
 #if EQUAL(_LIB_STL_VERSION, 1)
-void reAlloc(int new_size = -1) {
+void __reAlloc(int new_size = -1) {
     int sz_now = __STL_NOW_USE;
     memory_resource __tmp = malloc(sz_now);
 
@@ -36,7 +37,6 @@ void reAlloc(int new_size = -1) {
         MEMORY_POOL = malloc(sz_now << 1);
     }
 }
-#else
 #endif
 
 template<typename T>

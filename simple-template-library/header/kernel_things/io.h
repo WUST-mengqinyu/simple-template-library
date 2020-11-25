@@ -7,47 +7,34 @@
 
 // only file need to import cstdio lib to deal all i/o things (from shell)
 #include <cstdio>
+#include <header/kernel_things/__config.h>
+#include <header/data_structure/base_ds.h>
 
+// namespce IO not stl
 namespace IO {
-    void __R(char &x);
-    void __R(int &x);
-    void __R(long long &x);
-    void __R(int128 &x);
-    void _R(int &x) { scanf("%d", &x); }
-    void _R(double &x) { scanf("%lf", &x); }
+    // need to have read() method
+    template<typename T>
+    void _R(T &x) { x.read(); }
+    void read() {}
+    // list read
+    template<typename T, typename... U>
+    void read(T &head, U &... tail) { __R(head), read(tail...); }
 
-    void _R(char &x) { x = getchar(); }
+    // need to have write() method
+    template<typename T>
+    void _W(const T &x) { x.write(); }
+    void write() {}
+    // list write (space in mid and endl)
+    template<typename T, typename... U>
+    void write(const T &head, const U &... tail) { _W(head), putchar(sizeof...(tail) ? ' ' : '\n'), write(tail...); }
 
-    void _R(char *x) { scanf("%s", x); }
-
-    void R() {}
-
-    template<class T, class... U>
-    void R(T &head, U &... tail) { _R(head), R(tail...); }
-
-    template<class T>
-    void _W(const T &x) { cout << x; }
-
-    void _W(const int &x) { printf("%d", x); }
-
-    void _W(const ll &x) { printf("%lld", x); }
-
-    void _W(const double &x) { printf("%.16f", x); }
-
-    void _W(const char &x) { putchar(x); }
-
-    void _W(const char *x) { printf("%s", x); }
-
-    template<class T, class U>
-    void _W(const pair <T, U> &x) { _W(x.first), putchar(' '), _W(x.second); }
-
-    template<class T>
-    void _W(const vector <T> &x) { for (auto i = x.begin(); i != x.end(); _W(*i++)) if (i != x.cbegin()) putchar(' '); }
-
-    void W() {}
-
-    template<class T, class... U>
-    void W(const T &head, const U &... tail) { _W(head), putchar(sizeof...(tail) ? ' ' : '\n'), W(tail...); }
+    // need to have err() method
+    template<typename T>
+    void _PE(const T &x) { x.err(); }
+    void err() {}
+    // list perror (space in mid and endl)
+    template<typename T, typename... U>
+    void err(const T&head, const U &... tail) { _PE(head), perror(sizeof...(tail) ? " " : "\n"); err(tail...); }
 }
 
 #endif //SIMPLE_TEMPLATE_LIBRARY_IO_H
