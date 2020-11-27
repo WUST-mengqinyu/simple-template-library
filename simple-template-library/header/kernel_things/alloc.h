@@ -6,16 +6,38 @@
 #define SIMPLE_TEMPLATE_LIBRARY_ALLOC_H
 
 #pragma once
-#include "__config.h"
 
+#include <cstdlib>
+#include <err.h>
+#include <header/kernel_things/__config.h>
+#include <header/kernel_things/io.h>
 
 _LIB_BEGIN_NAMESPACE_STL
 
 extern const unsigned int POINTER_SIZE = sizeof(void *);
-extern const int MIN_ALLOC = 0;
+extern const int MIN_ALLOC = 5;
 typedef void *memory_resource;
 
-static memory_resource MEMORY_POOL;
+// use malloc to get Memory resource from sys.
+static memory_resource MEMORY_POOL = malloc(MIN_ALLOC);
+
+#define __STL_NOW_USE sizeof(MEMORY_POOL)
+
+#if EQUAL(_LIB_STL_VERSION, 1)
+void __reAlloc(int new_size = -1) {
+    int sz_now = __STL_NOW_USE;
+    memory_resource __tmp = malloc(sz_now);
+
+    // use builtin memcpy to copy char info.
+    __builtin_memcpy(__tmp, MEMORY_POOL, sz_now);
+    if (new_size == -1) {
+        free(MEMORY_POOL);
+        if (sz_now > 100000000) {
+        }
+        MEMORY_POOL = malloc(sz_now << 1);
+    }
+}
+#endif
 
 template<typename T>
 class alloc {
