@@ -5,7 +5,7 @@
 // this file should just can run
 
 #include "header/header.h"
-#include "bits/stdc++.h"
+#include <bits/stdc++.h>
 using namespace std;
 
 int main(int argc, char *argv[]) {
