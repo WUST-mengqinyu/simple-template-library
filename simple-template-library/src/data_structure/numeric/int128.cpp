@@ -14,7 +14,6 @@
 #include <type_traits>
 
 _LIB_BEGIN_NAMESPACE_STL
-using namespace __INTERNAL;
 
 const uint128 int128max = MakeUint128(
         std::numeric_limits<uint64_t>::max(), std::numeric_limits<uint64_t>::max());
@@ -31,7 +30,7 @@ namespace {
     // dividend = divisor * ret + remainder
     // remainder < divisor
     force_inline void DivMod(uint128 dividend, uint128 divisor,
-                             uint128* ret, uint128* remainder) {
+                             uint128 *ret, uint128 *remainder) {
         // while divisor equal to zero, throw a fail
         assert(divisor != 0);
         if (divisor > dividend) {
@@ -64,6 +63,23 @@ namespace {
         *ret = quotient;
         *remainder = dividend;
     }
+
+    template<typename T>
+    uint128 MakeUint128FromFloat(T v) {
+        static_assert(std::is_floating_point<T>::value, "");
+        assert(std::isfinite(v) && v > -1 &&
+               (std::numeric_limits<T>::max_exponent <= 128 ||
+                v < std::ldexp(static_cast<T>(1), 128)));
+        if (v >= std::ldexp(static_cast<T>(1), 64)) {
+            uint64_t hi = static_cast<uint64_t>(std::ldexp(v, -64));
+            uint64_t lo = static_cast<uint64_t>(v - std::ldexp(static_cast<T>(hi), 64));
+            return MakeUint128(hi, lo);
+        }
+        return MakeUint128(0, static_cast<uint64_t>(v));
+    }
 }
+
+namespace __
+uint128::uint128(float v) : uint128(MakeUint128FromFloat(v)) {}
 
 _LIB_END_NAMESPACE_STL

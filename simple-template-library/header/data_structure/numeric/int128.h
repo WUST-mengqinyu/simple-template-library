@@ -10,6 +10,7 @@
 #include <limits>
 #include <cmath>
 
+_LIB_BEGIN_NAMESPACE_STL
 // uint128 function
 namespace __INTERNAL {
 
@@ -127,7 +128,7 @@ namespace __INTERNAL {
 
         // Support for stl::Hash.
         template<typename H>
-        friend H AbslHashValue(H h, uint128 v) {
+        friend H HashValue(H h, uint128 v) {
             return H::combine(std::move(h), Uint128High64(v), Uint128Low64(v));
         }
 
@@ -155,9 +156,11 @@ namespace __INTERNAL {
 } // namespace __INTERNAL
 
 // Spcialized numeric_limits for uint128
+_LIB_END_NAMESPACE_STL
+
 namespace std {
     template <>
-    class numeric_limits<__INTERNAL::uint128> {
+    class numeric_limits<stl::__INTERNAL::uint128> {
     public:
         static constexpr bool is_specialized = true;
         static constexpr bool is_signed = false;
@@ -187,18 +190,20 @@ namespace std {
 #endif  // STL_HAVE_INTRINSIC_INT128
         static constexpr bool tinyness_before = false;
 
-        static constexpr __INTERNAL::uint128(min)() { return 0; }
-        static constexpr __INTERNAL::uint128 lowest() { return 0; }
-        static constexpr __INTERNAL::uint128(max)() { return __INTERNAL::Uint128Max(); }
-        static constexpr __INTERNAL::uint128 epsilon() { return 0; }
-        static constexpr __INTERNAL::uint128 round_error() { return 0; }
-        static constexpr __INTERNAL::uint128 infinity() { return 0; }
-        static constexpr __INTERNAL::uint128 quiet_NaN() { return 0; }
-        static constexpr __INTERNAL::uint128 signaling_NaN() { return 0; }
-        static constexpr __INTERNAL::uint128 denorm_min() { return 0; }
+        static constexpr stl::__INTERNAL::uint128(min)() { return 0; }
+        static constexpr stl::__INTERNAL::uint128 lowest() { return 0; }
+        static constexpr stl::__INTERNAL::uint128(max)() { return stl::__INTERNAL::Uint128Max(); }
+        static constexpr stl::__INTERNAL::uint128 epsilon() { return 0; }
+        static constexpr stl::__INTERNAL::uint128 round_error() { return 0; }
+        static constexpr stl::__INTERNAL::uint128 infinity() { return 0; }
+        static constexpr stl::__INTERNAL::uint128 quiet_NaN() { return 0; }
+        static constexpr stl::__INTERNAL::uint128 signaling_NaN() { return 0; }
+        static constexpr stl::__INTERNAL::uint128 denorm_min() { return 0; }
     };
 }  // namespace std
 
+
+_LIB_BEGIN_NAMESPACE_STL
 // int128 function
 namespace __INTERNAL {
 
@@ -377,11 +382,12 @@ namespace __INTERNAL {
         return int128((std::numeric_limits<int64_t>::min)(), 0);
     }
 } // namespace __INTERNAL
+_LIB_END_NAMESPACE_STL
 
 // Specialized numeric_limits for int128.
 namespace std {
     template <>
-    class numeric_limits<__INTERNAL::int128> {
+    class numeric_limits<stl::__INTERNAL::int128> {
     public:
         static constexpr bool is_specialized = true;
         static constexpr bool is_signed = true;
@@ -410,17 +416,19 @@ namespace std {
         static constexpr bool traps = numeric_limits<uint64_t>::traps;
 #endif  // STD_HAVE_INTRINSIC_INT128
         static constexpr bool tinyness_before = false;
-        static constexpr __INTERNAL::int128(min)() { return __INTERNAL::Int128Min(); }
-        static constexpr __INTERNAL::int128 lowest() { return __INTERNAL::Int128Min(); }
-        static constexpr __INTERNAL::int128(max)() { return __INTERNAL::Int128Max(); }
-        static constexpr __INTERNAL::int128 epsilon() { return 0; }
-        static constexpr __INTERNAL::int128 round_error() { return 0; }
-        static constexpr __INTERNAL::int128 infinity() { return 0; }
-        static constexpr __INTERNAL::int128 quiet_NaN() { return 0; }
-        static constexpr __INTERNAL::int128 signaling_NaN() { return 0; }
-        static constexpr __INTERNAL::int128 denorm_min() { return 0; }
+        static constexpr stl::__INTERNAL::int128(min)() { return stl::__INTERNAL::Int128Min(); }
+        static constexpr stl::__INTERNAL::int128 lowest() { return stl::__INTERNAL::Int128Min(); }
+        static constexpr stl::__INTERNAL::int128(max)() { return stl::__INTERNAL::Int128Max(); }
+        static constexpr stl::__INTERNAL::int128 epsilon() { return 0; }
+        static constexpr stl::__INTERNAL::int128 round_error() { return 0; }
+        static constexpr stl::__INTERNAL::int128 infinity() { return 0; }
+        static constexpr stl::__INTERNAL::int128 quiet_NaN() { return 0; }
+        static constexpr stl::__INTERNAL::int128 signaling_NaN() { return 0; }
+        static constexpr stl::__INTERNAL::int128 denorm_min() { return 0; }
     };
 }  // namespace std
+
+_LIB_BEGIN_NAMESPACE_STL
 namespace __INTERNAL {
 
     constexpr uint128 MakeUint128(uint64_t high, uint64_t low) {
@@ -649,16 +657,16 @@ constexpr uint128::operator unsigned __int128() const {
 // Conversion operators to floating point types.
 
     inline uint128::operator float() const {
-        return static_cast<float>(lo_) + std::ldexp(static_cast<float>(hi_), 64);
+        return static_cast<float>(lo_) + ::std::ldexp(static_cast<float>(hi_), 64);
     }
 
     inline uint128::operator double() const {
-        return static_cast<double>(lo_) + std::ldexp(static_cast<double>(hi_), 64);
+        return static_cast<double>(lo_) + ::std::ldexp(static_cast<double>(hi_), 64);
     }
 
     inline uint128::operator long double() const {
         return static_cast<long double>(lo_) +
-               std::ldexp(static_cast<long double>(hi_), 64);
+               ::std::ldexp(static_cast<long double>(hi_), 64);
     }
 
 // Comparison operators.
@@ -951,5 +959,5 @@ constexpr uint128::operator unsigned __int128() const {
 
     }  // namespace int128_internal
 }
-
+_LIB_END_NAMESPACE_STL
 #endif //SIMPLE_TEMPLATE_LIBRARY_INT128_H
