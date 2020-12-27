@@ -4,6 +4,8 @@
 
 #include "header/algorithm/bit_count.h"
 
+_LIB_BEGIN_NAMESPACE_STL
+
 int popcount32(unsigned int n) {
     n -= (n >> 1) & 0x55555555;
     n = (n & 0x33333333) + ((n >> 2) & 0x33333333);
@@ -76,3 +78,5 @@ int CountTrailingZerosNonZero32(uint32_t n) {
     // TODO count with cpu
     return CountTrailingZerosNonZero32Slow(n);
 }
+
+_LIB_END_NAMESPACE_STL

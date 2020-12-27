@@ -36,8 +36,8 @@ _LIB_BEGIN_NAMESPACE_STL
         typedef baseDataStructure<unsigned int> uint;
         typedef baseDataStructure<long long> int64;
         typedef baseDataStructure<unsigned long long> uint64;
-        typedef __INTERNAL::modInt<int> modint;
-        typedef __INTERNAL::modInt<int64> modint64;
+//        typedef __INTERNAL::modInt<int> modint;
+//        typedef __INTERNAL::modInt<int64> modint64;
         typedef __INTERNAL::int128 int128;
         typedef __INTERNAL::uint128 uint128;
 

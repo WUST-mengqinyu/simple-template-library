@@ -21,7 +21,8 @@
 #define _LIB_BEGIN_NAMESPACE_STL namespace stl { inline namespace _LIB_ABI_NAMESPACE {
 #define _LIB_END_NAMESPACE_STL  } }
 
-#define force_inline __inline__ __attribute__((always_inline))
+#define force_inline
+//#define force_inline __inline__ __attribute__((always_inline))
 
 // STL_HAVE_INTRINSIC_INT128
 //
