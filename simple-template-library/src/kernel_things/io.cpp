@@ -4,5 +4,5 @@
 
 #include "header/kernel_things/io.h"
 
-void IO::_R(__Int128 &x) {
-}
+//void IO::_R(__Int128 &x) {
+//}

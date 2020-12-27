@@ -186,4 +186,99 @@ _LIB_BEGIN_NAMESPACE_STL
 
         }  // namespace
 
+        std::ostream& operator<<(std::ostream& os, int128 v) {
+            std::ios_base::fmtflags flags = os.flags();
+            std::string rep;
+
+            // Add the sign if needed.
+            bool print_as_decimal =
+                    (flags & std::ios::basefield) == std::ios::dec ||
+                    (flags & std::ios::basefield) == std::ios_base::fmtflags();
+            if (print_as_decimal) {
+                if (Int128High64(v) < 0) {
+                    rep = "-";
+                } else if (flags & std::ios::showpos) {
+                    rep = "+";
+                }
+            }
+
+            rep.append(Uint128ToFormattedString(
+                    print_as_decimal ? UnsignedAbsoluteValue(v) : uint128(v), os.flags()));
+
+            // Add the requisite padding.
+            std::streamsize width = os.width(0);
+            if (static_cast<size_t>(width) > rep.size()) {
+                switch (flags & std::ios::adjustfield) {
+                    case std::ios::left:
+                        rep.append(width - rep.size(), os.fill());
+                        break;
+                    case std::ios::internal:
+                        if (print_as_decimal && (rep[0] == '+' || rep[0] == '-')) {
+                            rep.insert(1, width - rep.size(), os.fill());
+                        } else if ((flags & std::ios::basefield) == std::ios::hex &&
+                                   (flags & std::ios::showbase) && v != 0) {
+                            rep.insert(2, width - rep.size(), os.fill());
+                        } else {
+                            rep.insert(0, width - rep.size(), os.fill());
+                        }
+                        break;
+                    default:  // std::ios::right
+                        rep.insert(0, width - rep.size(), os.fill());
+                        break;
+                }
+            }
+
+            return os << rep;
+        }
+
 _LIB_END_NAMESPACE_STL
+
+namespace std {
+    constexpr bool numeric_limits<stl::uint128>::is_specialized;
+    constexpr bool numeric_limits<stl::uint128>::is_signed;
+    constexpr bool numeric_limits<stl::uint128>::is_integer;
+    constexpr bool numeric_limits<stl::uint128>::is_exact;
+    constexpr bool numeric_limits<stl::uint128>::has_infinity;
+    constexpr bool numeric_limits<stl::uint128>::has_quiet_NaN;
+    constexpr bool numeric_limits<stl::uint128>::has_signaling_NaN;
+    constexpr float_denorm_style numeric_limits<stl::uint128>::has_denorm;
+    constexpr bool numeric_limits<stl::uint128>::has_denorm_loss;
+    constexpr float_round_style numeric_limits<stl::uint128>::round_style;
+    constexpr bool numeric_limits<stl::uint128>::is_iec559;
+    constexpr bool numeric_limits<stl::uint128>::is_bounded;
+    constexpr bool numeric_limits<stl::uint128>::is_modulo;
+    constexpr int numeric_limits<stl::uint128>::digits;
+    constexpr int numeric_limits<stl::uint128>::digits10;
+    constexpr int numeric_limits<stl::uint128>::max_digits10;
+    constexpr int numeric_limits<stl::uint128>::radix;
+    constexpr int numeric_limits<stl::uint128>::min_exponent;
+    constexpr int numeric_limits<stl::uint128>::min_exponent10;
+    constexpr int numeric_limits<stl::uint128>::max_exponent;
+    constexpr int numeric_limits<stl::uint128>::max_exponent10;
+    constexpr bool numeric_limits<stl::uint128>::traps;
+    constexpr bool numeric_limits<stl::uint128>::tinyness_before;
+
+    constexpr bool numeric_limits<stl::int128>::is_specialized;
+    constexpr bool numeric_limits<stl::int128>::is_signed;
+    constexpr bool numeric_limits<stl::int128>::is_integer;
+    constexpr bool numeric_limits<stl::int128>::is_exact;
+    constexpr bool numeric_limits<stl::int128>::has_infinity;
+    constexpr bool numeric_limits<stl::int128>::has_quiet_NaN;
+    constexpr bool numeric_limits<stl::int128>::has_signaling_NaN;
+    constexpr float_denorm_style numeric_limits<stl::int128>::has_denorm;
+    constexpr bool numeric_limits<stl::int128>::has_denorm_loss;
+    constexpr float_round_style numeric_limits<stl::int128>::round_style;
+    constexpr bool numeric_limits<stl::int128>::is_iec559;
+    constexpr bool numeric_limits<stl::int128>::is_bounded;
+    constexpr bool numeric_limits<stl::int128>::is_modulo;
+    constexpr int numeric_limits<stl::int128>::digits;
+    constexpr int numeric_limits<stl::int128>::digits10;
+    constexpr int numeric_limits<stl::int128>::max_digits10;
+    constexpr int numeric_limits<stl::int128>::radix;
+    constexpr int numeric_limits<stl::int128>::min_exponent;
+    constexpr int numeric_limits<stl::int128>::min_exponent10;
+    constexpr int numeric_limits<stl::int128>::max_exponent;
+    constexpr int numeric_limits<stl::int128>::max_exponent10;
+    constexpr bool numeric_limits<stl::int128>::traps;
+    constexpr bool numeric_limits<stl::int128>::tinyness_before;
+}
