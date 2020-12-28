@@ -8,8 +8,12 @@ Useful for competition.
 
 ## DataStructure
 
-[Data Structure](src/data_structure/data_structure.md)
+[Data Structure](doc/data_structure.md)
 
 ## Algorithm
 
-[Algorithm](src/algorithm/algorithm.md)
+[Algorithm](doc/algorithm.md)
+
+## Kernel Things
+
+[Kernel Things](doc/kernel_things.md)
