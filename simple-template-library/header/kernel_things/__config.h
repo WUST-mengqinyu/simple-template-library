@@ -6,14 +6,14 @@
 #define SIMPLE_TEMPLATE_LIBRARY___CONFIG_H
 
 #ifndef _LIB_STL_VERSION
-#  define _LIB_STL_VERSION 1
+#define _LIB_STL_VERSION 1
 #endif
 
-#define _LIB_CONCAT(_LIB_X,_LIB_Y) _LIB_X##_LIB_Y
+#define _LIB_CONCAT(_LIB_X, _LIB_Y) _LIB_X##_LIB_Y
 #define EQUAL(x, y) (x==y)
 
 #ifndef _LIB_ABI_NAMESPACE
-# define _LIB_ABI_NAMESPACE _LIB_CONCAT(__,_LIB_ABI_VERSION)
+#define _LIB_ABI_NAMESPACE _LIB_CONCAT(__,_LIB_STL_VERSION)
 #endif
 
 // define namespace begin and end
@@ -21,7 +21,7 @@
 #define _LIB_BEGIN_NAMESPACE_STL namespace stl { inline namespace _LIB_ABI_NAMESPACE {
 #define _LIB_END_NAMESPACE_STL  } }
 
-#define force_inline
+//#define force_inline inline
 //#define force_inline __inline__ __attribute__((always_inline))
 
 // STL_HAVE_INTRINSIC_INT128
@@ -37,11 +37,12 @@
 // * On Nvidia's nvcc:
 //   * nvcc also defines __GNUC__ and __SIZEOF_INT128__, but not all versions
 //     actually support __int128.
+
 #ifdef STL_HAVE_INTRINSIC_INT128
 #error STL_HAVE_INTRINSIC_INT128 cannot be directly set
 #elif defined(__SIZEOF_INT128__)
 #if (defined(__clang__) && !defined(_WIN32)) || \
-    (defined(__CUDACC__) && __CUDACC_VER_MAJOR__ >= 9) ||                \
+    (defined(__CUDACC__) && __CUDACC_VER_MAJOR__ >= 9) || \
     (defined(__GNUC__) && !defined(__clang__) && !defined(__CUDACC__))
 #define STL_HAVE_INTRINSIC_INT128 1
 #elif defined(__CUDACC__)
