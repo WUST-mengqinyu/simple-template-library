@@ -6,7 +6,7 @@
 #include <gtest/gtest.h>
 #include <bits/stdc++.h>
 
-stl::uint128 x;
+stl::uint128 x, y;
 
 TEST(IfInt128RunCorrect, Correct) {
     // if int128 can be initialize correctly
@@ -24,4 +24,15 @@ TEST(IfInt128RunCorrect, Correct) {
     std::cerr << x << std::endl;
     x /= 2;
     EXPECT_EQ(x, __LONG_LONG_MAX__);
+    y = x;
+    y += 100;
+    x += 100;
+    EXPECT_EQ(y, x);
+    EXPECT_EQ(x, y);
+}
+
+TEST(IfInt128CalCorrect, Correct) {
+    x = 1000;
+    y = 1000;
+    std::cerr << x * y << std::endl;
 }

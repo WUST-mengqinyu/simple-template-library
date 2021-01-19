@@ -9,11 +9,12 @@
 #define _LIB_STL_VERSION 1
 #endif
 
-#define _LIB_CONCAT(_LIB_X, _LIB_Y) _LIB_X##_LIB_Y
+#define _LIB_CONCAT(A, B) A ## B
+#define CONCAT(A, B) _LIB_CONCAT(A, B)
 #define EQUAL(x, y) (x==y)
 
 #ifndef _LIB_ABI_NAMESPACE
-#define _LIB_ABI_NAMESPACE _LIB_CONCAT(__,_LIB_STL_VERSION)
+#define _LIB_ABI_NAMESPACE _LIB_CONCAT(__, _LIB_STL_VERSION)
 #endif
 
 // define namespace begin and end
@@ -21,8 +22,12 @@
 #define _LIB_BEGIN_NAMESPACE_STL namespace stl { inline namespace _LIB_ABI_NAMESPACE {
 #define _LIB_END_NAMESPACE_STL  } }
 
-//#define force_inline inline
-//#define force_inline __inline__ __attribute__((always_inline))
+// for debug define
+#define XSTR(x) STR(x)
+#define STR(x) #x
+// #pragma message "The value of _LIB_BEGIN_NAMESPACE_STL: " XSTR(_LIB_BEGIN_NAMESPACE_STL)
+
+#define force_inline __inline__ __attribute__((always_inline))
 
 // STL_HAVE_INTRINSIC_INT128
 //
