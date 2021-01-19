@@ -11,22 +11,22 @@
 _LIB_BEGIN_NAMESPACE_STL
 
 // count a int32 bits of 1
-static force_inline int popcount32(unsigned int n);
+        int popcount32(unsigned int n);
 
 // count a int64 bits of 1
-static force_inline int popcount64(uint64_t n);
+        int popcount64(uint64_t n);
 
-static force_inline int CountLeadingZero64Slow(uint64_t n);
+        int CountLeadingZero64Slow(uint64_t n);
 
-static force_inline int CountLeadingZeros64(uint64_t n);
+        int CountLeadingZeros64(uint64_t n);
 
-static force_inline int CountLeadingZeros32Slow(uint32_t n);
+        int CountLeadingZeros32Slow(uint32_t n);
 
-static force_inline int CountLeadingZeros32(uint32_t n);
+        int CountLeadingZeros32(uint32_t n);
 
-static force_inline int CountTrailingZerosNonZero32Slow(uint32_t n);
+        int CountTrailingZerosNonZero32Slow(uint32_t n);
 
-static force_inline int CountTrailingZerosNonZero32(uint32_t n);
+        int CountTrailingZerosNonZero32(uint32_t n);
 
 _LIB_END_NAMESPACE_STL
 
